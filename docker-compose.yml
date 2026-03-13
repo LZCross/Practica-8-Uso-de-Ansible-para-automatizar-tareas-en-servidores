@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  ansible:
+    image: ubuntu:latest
+    container_name: ansible-controller
+    command: sleep infinity
+    volumes:
+      - .:/workspace
+    working_dir: /workspace
+
+  server1:
+    build: .
+    container_name: ubuntu-server1
+
+  server2:
+    build: .
+    container_name: ubuntu-server2
+
+  server3:
+    build: .
+    container_name: ubuntu-server3
+
+  server4:
+    build: .
+    container_name: ubuntu-server4
+
+  server5:
+    build: .
+    container_name: ubuntu-server5

@@ -1,0 +1,40 @@
+---
+- name: Automatizar tareas en servidores Ubuntu
+  hosts: servers
+  become: yes
+  tasks:
+    - name: Actualizar paquetes APT
+      apt:
+        update_cache: yes
+        upgrade: dist
+
+    - name: Crear usuario itla
+      user:
+        name: itla
+        state: present
+
+    - name: Crear carpeta app
+      file:
+        path: /home/itla/app
+        state: directory
+        owner: itla
+        group: itla
+        mode: '0755'
+
+    - name: Crear archivo hola.txt en carpeta app
+      copy:
+        dest: /home/itla/app/hola.txt
+        content: "Hola desde Ansible!"
+        owner: itla
+        group: itla
+        mode: '0644'
+
+    - name: Instalar cowsay
+      apt:
+        name: cowsay
+        state: present
+
+    - name: Instalar htop
+      apt:
+        name: htop
+        state: present
